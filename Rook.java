@@ -1,5 +1,9 @@
 public class Rook extends Piece {
     /**
+     * This variable keeps track of whether a rook has moved for castling.
+     */
+    private boolean hasMoved = false;
+    /**
      * A rook is a symbol of security. It is able to move both horziontally and vertically.
      */
     public Rook(boolean color) {
