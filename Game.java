@@ -1,11 +1,12 @@
+/**
+ * This class will hold all the game logic
+ */
 public class Game {
-    //This class will hold all the game logic
-    boolean playerTurn;
+
+    private boolean playerTurn = true;
     Board board = new Board();
 
-    public Game() {
-        playerTurn = true;
-    }
+    public Game() {}
 
     public static void main(String[] args) {
 

@@ -1,6 +1,7 @@
 public abstract class Piece {
 
-    private boolean color = false;
+    // Black is FALSE and White is TRUE
+    private boolean color = true;
     private char letter;
     private int x;
     private int y;
