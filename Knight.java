@@ -1,5 +1,8 @@
 public class Knight extends Piece {
-
+    /**
+     * The leapfrogs of the kingdom. Knights are able to jump over pieces but can only move in a very specific way.
+     * @param color
+     */
     public Knight(Boolean color) {
         super(color);
     }
