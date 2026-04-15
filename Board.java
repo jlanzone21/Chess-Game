@@ -1,5 +1,5 @@
 public class Board {
-    private Piece[][] spaces = new Piece[8][8];
+    private Piece[][] board = new Piece[8][8];
 
     public Board() {
         //Fill board with starting spaces
@@ -26,5 +26,10 @@ public class Board {
     //Returns 1 if only RED has pieces left
     public int hasWon() {
         return 0;
+    }
+
+    public boolean inCheck() {
+       // if Object on board is not my color and has validMove at my King's location, I am in check
+        return false;
     }
 }

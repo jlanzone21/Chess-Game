@@ -1,13 +1,18 @@
 public abstract class Piece {
 
-    private boolean king = false;
+    private boolean color = false;
+    private char letter;
 
     public Piece() {}
 
-
-    abstract void move();
+    // returns true if a piece is allowed to move to a space
+    abstract boolean validMove(int x, int y);
 
     public void setKing() {
-        this.king = true;
+        this.color = true;
+    }
+
+    public char getLetter() {
+        return letter;
     }
 }
