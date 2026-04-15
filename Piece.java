@@ -2,6 +2,8 @@ public abstract class Piece {
 
     private boolean color = false;
     private char letter;
+    private int x;
+    private int y;
 
     public Piece() {}
 
@@ -14,5 +16,13 @@ public abstract class Piece {
 
     public char getLetter() {
         return letter;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

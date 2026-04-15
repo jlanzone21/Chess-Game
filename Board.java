@@ -9,7 +9,7 @@ public class Board {
         return null;
     }
 
-    public void movePieceAt() {
+    public void movePieceAt(int x, int y) {
 
     }
 
