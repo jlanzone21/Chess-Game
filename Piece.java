@@ -2,7 +2,6 @@ public abstract class Piece {
 
     // Black is FALSE and White is TRUE
     private final boolean COLOR;
-    private char letter;
     private int x;
     private int y;
 
@@ -18,9 +17,7 @@ public abstract class Piece {
      */
     abstract boolean validMove(int x, int y);
 
-    public char getLetter() {
-        return letter;
-    }
+    abstract char getLetter();
 
     public int getX() {
         return x;

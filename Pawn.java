@@ -7,6 +7,12 @@ public class Pawn extends Piece {
     public Pawn(boolean color) {
         super(color);
     }
+
+    @Override
+    public char getLetter() {
+        return 'p';
+    }
+
     /**
      * returns true if the pawn is allowed to move to the x y space.
      * if the space is capturable,

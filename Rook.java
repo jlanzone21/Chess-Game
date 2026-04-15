@@ -10,6 +10,11 @@ public class Rook extends Piece {
         super(color);
     }
 
+    @Override
+    public char getLetter() {
+        return 'R';
+    }
+
     /**
      * returns true if Rook is allowed to move to a space.
      * If the square is unblocked or occupied with the enemy and in the rooks column or row.

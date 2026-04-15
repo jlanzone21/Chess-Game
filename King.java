@@ -11,6 +11,12 @@ public class King extends Piece {
     public King(boolean color) {
         super(color);
     }
+
+    @Override
+    public char getLetter() {
+        return 'K';
+    }
+
     /**
      * returns true if the space is one square away,
      * does not put the king in check and is not occupied with a same team piece .

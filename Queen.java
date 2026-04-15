@@ -7,6 +7,11 @@ public class Queen extends Piece {
         super(color);
     }
 
+    @Override
+    public char getLetter() {
+        return 'Q';
+    }
+
     /** returns true if Queen is allowed to move to a space
     ie if the square is diagonally, vertically, politically or horizontally alligned with the Queen
      and is not blocked or occupied by friendly forces*/
