@@ -1,8 +1,6 @@
 public class BlackPiece extends Piece {
 
-    public BlackPiece(){
-        super(0,0);
-    }
+    public BlackPiece() {}
 
     @Override
     public void move() {
