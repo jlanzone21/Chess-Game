@@ -10,7 +10,12 @@ public abstract class Piece {
         COLOR = color;
     }
 
-    // returns true if a piece is allowed to move to a space
+    /**
+     * returns true if Piece is allowed to move to the x y space.
+     * @param x
+     * @param y
+     * @return
+     */
     abstract boolean validMove(int x, int y);
 
     public char getLetter() {
