@@ -5,7 +5,14 @@ public class Board {
      * Board is the class that holds all the Pieces and moves them around
      */
     public Board() {
-        //Fill board with starting spaces
+        board[0][0] = new Rook(false);
+        board[0][1] = new Knight(false);
+        board[0][2] = new Bishop(false);
+        board[0][3] = new Queen(false);
+        board[0][4] = new King(false);
+        board[0][5] = new Bishop(false);
+        board[0][6] = new Knight(false);
+        board[0][7] = new Rook(false);
     }
 
     /**

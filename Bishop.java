@@ -1,7 +1,9 @@
 public class Bishop extends Piece {
 
     // Bishops move diagonally as far as they want
-    public Bishop() {}
+    public Bishop(Boolean color) {
+        super(color);
+    }
 
     /**Returns true if a Bishop is allowed to move to a space
     * ie. if it is diagonal from the Bishop
