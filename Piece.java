@@ -26,4 +26,8 @@ public abstract class Piece {
     public int getY() {
         return y;
     }
+
+    public boolean getColor() {
+        return COLOR;
+    }
 }

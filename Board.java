@@ -15,16 +15,16 @@ public class Board {
         board[0][7] = new Rook(false);
         for (int i = 0; i < board.length; i++)
             board[1][i] = new Pawn(false);
-        board[0][0] = new Rook(true);
-        board[0][1] = new Knight(true);
-        board[0][2] = new Bishop(true);
-        board[0][3] = new Queen(true);
-        board[0][4] = new King(true);
-        board[0][5] = new Bishop(true);
-        board[0][6] = new Knight(true);
-        board[0][7] = new Rook(true);
+        board[7][0] = new Rook(true);
+        board[7][1] = new Knight(true);
+        board[7][2] = new Bishop(true);
+        board[7][3] = new Queen(true);
+        board[7][4] = new King(true);
+        board[7][5] = new Bishop(true);
+        board[7][6] = new Knight(true);
+        board[7][7] = new Rook(true);
         for (int i = 0; i < board.length; i++)
-            board[1][i] = new Pawn(true);
+            board[6][i] = new Pawn(true);
     }
 
     /**
@@ -34,7 +34,7 @@ public class Board {
      * @return the Piece object at the specified index
      */
     public Piece getPieceAt(int y, int x)  {
-        return null;
+        return board[y][x];
     }
 
     /**
@@ -65,7 +65,12 @@ public class Board {
      * @return int
      */
     public int isFilled(int y, int x) {
-        return 0;
+        if (board[y][x] == null)
+            return 0;
+        else if (board[y][x].getColor())
+            return 1;
+        else
+            return 2;
     }
 
     /**
@@ -83,5 +88,22 @@ public class Board {
     public boolean inCheck() {
        // if Object on board is not my color and has validMove at my King's location, I am in check
         return false;
+    }
+
+    public String displayBoard() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("   a  b  c  d  e  f  g  h  \n");
+        for (int i = 0; i < board.length; i++) {
+            sb.append(i+1).append("  ");
+            for (int j = 0; j < board.length; j++) {
+                if (this.getPieceAt(i,j) != null) {
+                    sb.append(this.getPieceAt(i, j).getLetter()).append("  ");
+                } else {
+                    sb.append("□  ");
+                }
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }
