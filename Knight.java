@@ -3,7 +3,7 @@ public class Knight extends Piece {
      * The leapfrogs of the kingdom. Knights are able to jump over pieces but can only move in a very specific way.
      * @param color
      */
-    public Knight(Boolean color) {
+    public Knight(int color) {
         super(color);
     }
 
@@ -13,9 +13,15 @@ public class Knight extends Piece {
     }
 
     /** returns true if Knight is allowed to move to a space
-    * ie if the space is not occupied by friendly forces and is 2 and 1 away. */
+    * ie if the space is not occupied by friendly forces and is 2 and 1 away.
+     * @param y
+     * @param x
+     * @param nY
+     * @param nX
+     * @return
+     */
     @Override
-    public boolean validMove(int x, int y) {
+    public boolean validMove(int y, int x, int nY, int nX) {
         return false;
     }
 }

@@ -1,33 +1,25 @@
 public abstract class Piece {
 
-    // Black is FALSE and White is TRUE
-    private final boolean COLOR;
-    private int x;
-    private int y;
+    // Black is 2 and White is 1
+    private final int COLOR;
 
-    public Piece(boolean color) {
+    public Piece(int color) {
         COLOR = color;
     }
 
     /**
      * returns true if Piece is allowed to move to the x y space.
-     * @param x
      * @param y
+     * @param x
+     * @param nY
+     * @param nX
      * @return
      */
-    abstract boolean validMove(int x, int y);
+    abstract boolean validMove(int y, int x, int nY, int nX);
 
     abstract char getLetter();
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public boolean getColor() {
+    public int getColor() {
         return COLOR;
     }
 }

@@ -4,7 +4,7 @@ public class Pawn extends Piece {
      */
     private boolean hasMoved = false;
 
-    public Pawn(boolean color) {
+    public Pawn(int color) {
         super(color);
     }
 
@@ -18,12 +18,15 @@ public class Pawn extends Piece {
      * if the space is capturable,
      * or is unblocked and two forward from its starting position
      * or unblocked and one in front of the pawn
-     * @param x
+     *
      * @param y
+     * @param x
+     * @param nY
+     * @param nX
      * @return
      */
     @Override
-    public boolean validMove(int x, int y) {
+    public boolean validMove(int y, int x, int nY, int nX) {
         return false;
     }
 }

@@ -1,7 +1,7 @@
 public class Bishop extends Piece {
 
     // Bishops move diagonally as far as they want
-    public Bishop(Boolean color) {
+    public Bishop(int color) {
         super(color);
     }
 
@@ -14,7 +14,7 @@ public class Bishop extends Piece {
     * ie. if it is diagonal from the Bishop
     * And unblocked and in bounds */
     @Override
-    public boolean validMove(int y, int x) {
+    public boolean validMove(int x, int y, int nY, int nX) {
         return false;
     }
 }

@@ -5,26 +5,26 @@ public class Board {
      * Board is the class that holds all the Pieces and moves them around
      */
     public Board() {
-        board[0][0] = new Rook(false);
-        board[0][1] = new Knight(false);
-        board[0][2] = new Bishop(false);
-        board[0][3] = new Queen(false);
-        board[0][4] = new King(false);
-        board[0][5] = new Bishop(false);
-        board[0][6] = new Knight(false);
-        board[0][7] = new Rook(false);
+        board[0][0] = new Rook(2);
+        board[0][1] = new Knight(2);
+        board[0][2] = new Bishop(2);
+        board[0][3] = new Queen(2);
+        board[0][4] = new King(2);
+        board[0][5] = new Bishop(2);
+        board[0][6] = new Knight(2);
+        board[0][7] = new Rook(2);
         for (int i = 0; i < board.length; i++)
-            board[1][i] = new Pawn(false);
-        board[7][0] = new Rook(true);
-        board[7][1] = new Knight(true);
-        board[7][2] = new Bishop(true);
-        board[7][3] = new Queen(true);
-        board[7][4] = new King(true);
-        board[7][5] = new Bishop(true);
-        board[7][6] = new Knight(true);
-        board[7][7] = new Rook(true);
+            board[1][i] = new Pawn(2);
+        board[7][0] = new Rook(1);
+        board[7][1] = new Knight(1);
+        board[7][2] = new Bishop(1);
+        board[7][3] = new Queen(1);
+        board[7][4] = new King(1);
+        board[7][5] = new Bishop(1);
+        board[7][6] = new Knight(1);
+        board[7][7] = new Rook(1);
         for (int i = 0; i < board.length; i++)
-            board[6][i] = new Pawn(true);
+            board[6][i] = new Pawn(1);
     }
 
     /**
@@ -38,14 +38,28 @@ public class Board {
     }
 
     /**
-     * Checks the Piece object's validMove and the moves the piece to the desired location
-     * @param y  the current y-position of the piece
-     * @param x  the current x-position of the piece
+     * Recieves chunks of info from a classic chess move call like 'kb3'
+     * Checks all relevant Piece object's validMoves and then moves the corresponding piece to the desired location
+     * @param letter to sort through all relevant pieces that could move to a space
+     * @param color to determine whether a space if filled and unavailable or if taking a piece
      * @param nY the y-location of the desired move
      * @param nX the x-location of the desired move
      */
-    public void movePieceAt(int y, int x, int nY, int nX) {
-
+    public void movePiece(char letter, int color, int nY, int nX) throws Exception {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                // Checks if the color and letter of an object on the board match
+                if (board[i][j] != null && board[i][j].getColor() == color
+                        && board[i][j].getLetter() == letter) {
+                    // Checks if the piece trying to move is the same team as the specified location
+                    if (isFilled(i,j) == color) {
+                        throw new Exception("Invalid move: same team");
+                    }
+                    // Checks if the piece can move to the specified location
+                    if (board[i][j].validMove(nX, nY, , ));
+                }
+            }
+        }
     }
 
     /**
@@ -67,10 +81,8 @@ public class Board {
     public int isFilled(int y, int x) {
         if (board[y][x] == null)
             return 0;
-        else if (board[y][x].getColor())
-            return 1;
         else
-            return 2;
+            return board[y][x].getColor();
     }
 
     /**

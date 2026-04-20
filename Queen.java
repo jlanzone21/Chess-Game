@@ -3,7 +3,7 @@ public class Queen extends Piece {
      * A queen is female monarch. The most powerful of chess pieces,
      * a queen is able to move like a bishop and a rook.
      */
-    public Queen(boolean color) {
+    public Queen(int color) {
         super(color);
     }
 
@@ -16,7 +16,7 @@ public class Queen extends Piece {
     ie if the square is diagonally, vertically, politically or horizontally alligned with the Queen
      and is not blocked or occupied by friendly forces*/
     @Override
-    public boolean validMove(int y, int x) {
+    public boolean validMove(int x, int y, int nY, int nX) {
         return false;
     }
 }

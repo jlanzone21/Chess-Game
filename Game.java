@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * This class will hold all the game logic
  */
@@ -11,6 +13,13 @@ public class Game {
      */
     public Game() {}
 
+    /**
+     * Scans through input and calls board.movePiece() on the right piece
+     * @param input String containing move information
+     */
+    public void takeTurn(String input) {
+
+    }
     /**
      * This main will run the entire game and loop through turns into a player has won
      * or a stalemate has been reached.

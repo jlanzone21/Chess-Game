@@ -8,7 +8,7 @@ public class King extends Piece {
      * A king is the ruler by divine mandate. He is able to move one space in any direction.
      * While he remains unthreatened his forces can still win.
      */
-    public King(boolean color) {
+    public King(int color) {
         super(color);
     }
 
@@ -20,12 +20,15 @@ public class King extends Piece {
     /**
      * returns true if the space is one square away,
      * does not put the king in check and is not occupied with a same team piece .
-     * @param x
+     *
      * @param y
+     * @param x
+     * @param nY
+     * @param nX
      * @return
      */
     @Override
-    public boolean validMove(int x, int y) {
-        return false;
+    public boolean validMove(int y, int x, int nY, int nX) {
+
     }
 }

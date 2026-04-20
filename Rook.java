@@ -6,7 +6,7 @@ public class Rook extends Piece {
     /**
      * A rook is a symbol of security. It is able to move both horziontally and vertically.
      */
-    public Rook(boolean color) {
+    public Rook(int color) {
         super(color);
     }
 
@@ -18,12 +18,15 @@ public class Rook extends Piece {
     /**
      * returns true if Rook is allowed to move to a space.
      * If the square is unblocked or occupied with the enemy and in the rooks column or row.
+     *
      * @param x
      * @param y
+     * @param nY
+     * @param nX
      * @return
      */
     @Override
-    public boolean validMove(int y, int x) {
+    public boolean validMove(int x, int y, int nY, int nX) {
         return false;
     }
 }
