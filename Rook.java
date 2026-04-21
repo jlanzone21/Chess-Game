@@ -23,6 +23,13 @@ public class Rook extends Piece {
     @Override
     public Rook makeCopy() {
         return new Rook(this);
+
+    /**
+     * Determines if
+     * @return
+     */
+    public boolean pieceInWay() {
+        return false;
     }
 
     /**
