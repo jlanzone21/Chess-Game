@@ -22,6 +22,11 @@ public class King extends Piece {
         return 'K';
     }
 
+    @Override
+    public King makeCopy() {
+        return new King(this);
+    }
+
     /**
      * returns true if the space is one square away,
      * does not put the king in check and is not occupied with a same team piece .

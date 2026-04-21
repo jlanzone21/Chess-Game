@@ -24,4 +24,7 @@ public abstract class Piece {
     public int getColor() {
         return COLOR;
     }
+
+    public abstract Piece makeCopy();
+
 }

@@ -5,9 +5,18 @@ public class Bishop extends Piece {
         super(color);
     }
 
+    public Bishop(Bishop other) {
+        super(other.getColor());
+    }
+
     @Override
     public char getLetter() {
         return 'B';
+    }
+
+    @Override
+    public Bishop makeCopy() {
+        return new Bishop(this);
     }
 
     /**Returns true if a Bishop is allowed to move to a space

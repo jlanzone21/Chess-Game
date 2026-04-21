@@ -10,18 +10,27 @@ public class Rook extends Piece {
         super(color);
     }
 
+    public Rook(Rook other) {
+        super(other.getColor());
+        this.hasMoved = other.hasMoved;
+    }
+
     @Override
     public char getLetter() {
         return 'R';
     }
 
+    @Override
+    public Rook makeCopy() {
+        return new Rook(this);
+    }
 
     /**
      * Determines if
      * @return
      */
     public boolean pieceInWay() {
-
+        return false;
     }
 
     /**

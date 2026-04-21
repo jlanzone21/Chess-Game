@@ -7,9 +7,18 @@ public class Knight extends Piece {
         super(color);
     }
 
+    public Knight(Knight other) {
+        super(other.getColor());
+    }
+
     @Override
     public char getLetter() {
         return 'k';
+    }
+
+    @Override
+    public Knight makeCopy() {
+        return new Knight(this);
     }
 
     /**

@@ -7,9 +7,18 @@ public class Queen extends Piece {
         super(color);
     }
 
+    public Queen(Queen other) {
+        super(other.getColor());
+    }
+
     @Override
     public char getLetter() {
         return 'Q';
+    }
+
+    @Override
+    public Queen makeCopy() {
+        return new Queen(this);
     }
 
     /** returns true if Queen is allowed to move to a space

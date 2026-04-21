@@ -19,6 +19,11 @@ public class Pawn extends Piece {
         return 'p';
     }
 
+    @Override
+    public Pawn makeCopy() {
+        return new Pawn(this);
+    }
+
     /**
      * returns true if the pawn is allowed to move to the x y space.
      * if the space is capturable,
