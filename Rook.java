@@ -26,27 +26,52 @@ public class Rook extends Piece {
     }
 
     /**
-     * Determines if
-     * @return
-     */
-    public boolean pieceInWay() {
-        return false;
-    }
-
-    /**
      * returns true if Rook is allowed to move to a space.
      * If the square is unblocked or occupied with the enemy and in the rooks column or row.
      *
-     * @param x
      * @param y
+     * @param x
      * @param nY
      * @param nX
      * @param currentBoard
      * @return
      */
     @Override
-    public boolean validMove(int x, int y, int nY, int nX, Board currentBoard) {
-
-        return false;
+    public boolean validMove(int y, int x, int nY, int nX, Board currentBoard) {
+        // Checks if new location is in the same row
+        if (x == nX) {
+            for (int i = y; i < 8; i++) {
+                // Checks if there is a piece in the way
+                if (currentBoard.spaceColor(i,x) != 0 && i != nY) {
+                    return false;
+                }
+            }
+            for (int i = y; i >= 0; i--) {
+                // Checks if there is a piece in the way
+                if (currentBoard.spaceColor(i, x) != 0 && i != nY) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        // Checks if in the same column
+        else if (y == nY) {
+            for (int i = x; i < 8; i++) {
+                // Checks if there is a piece in the way
+                if (currentBoard.spaceColor(y,i) != 0 && i != nX) {
+                    return false;
+                }
+            }
+            for (int i = x; i >= 0; i--) {
+                // Checks if there is a piece in the way
+                if (currentBoard.spaceColor(y, i) != 0 && i != nX) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

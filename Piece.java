@@ -25,6 +25,14 @@ public abstract class Piece {
         return COLOR;
     }
 
+    public boolean inBounds(int nY, int nX) {
+        if (nY > 7 || nY < 0)
+            return false;
+        if (nX > 7 || nY < 0)
+            return false;
+        return true;
+    }
+
     public abstract Piece makeCopy();
 
 }
