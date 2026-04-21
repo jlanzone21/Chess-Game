@@ -45,7 +45,7 @@ public class Knight extends Piece {
             }
         }
         else if (nX == x + 1 || nX == x - 1) {
-            if (nY == y - 2 || nY == y - 2) {
+            if (nY == y + 2 || nY == y - 2) {
                 System.out.println("Move is broken");
                 return true;
             }

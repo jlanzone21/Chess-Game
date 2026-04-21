@@ -3,6 +3,7 @@ public class Rook extends Piece {
      * This variable keeps track of whether a rook has moved for castling.
      */
     private boolean hasMoved = false;
+
     /**
      * A rook is a symbol of security. It is able to move both horziontally and vertically.
      */
@@ -23,13 +24,6 @@ public class Rook extends Piece {
     @Override
     public Rook makeCopy() {
         return new Rook(this);
-
-    /**
-     * Determines if
-     * @return
-     */
-    public boolean pieceInWay() {
-        return false;
     }
 
     /**
@@ -49,7 +43,7 @@ public class Rook extends Piece {
         if (x == nX) {
             for (int i = y; i < 8; i++) {
                 // Checks if there is a piece in the way
-                if (currentBoard.spaceColor(i,x) != 0 && i != nY) {
+                if (currentBoard.spaceColor(i, x) != 0 && i != nY) {
                     return false;
                 }
             }
@@ -65,7 +59,7 @@ public class Rook extends Piece {
         else if (y == nY) {
             for (int i = x; i < 8; i++) {
                 // Checks if there is a piece in the way
-                if (currentBoard.spaceColor(y,i) != 0 && i != nX) {
+                if (currentBoard.spaceColor(y, i) != 0 && i != nX) {
                     return false;
                 }
             }
@@ -76,9 +70,9 @@ public class Rook extends Piece {
                 }
             }
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 }
+

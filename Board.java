@@ -67,6 +67,7 @@ public class Board {
                             //Actually move the piece
                             board[nY][nX] = board[i][j];
                             board[i][j] = null;
+                            return;
                         }
                     }
                 }

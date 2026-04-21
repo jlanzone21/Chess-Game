@@ -6,7 +6,7 @@ public class Test {
         //testBoard.movePiece('R',1, 4,4);
         System.out.println(testBoard.getPieceAt(0,1).getLetter());
         //testBoard.movePiece('k',2,3,2);
-        testBoard.movePiece('k',1,2,2);
+        testBoard.movePiece('k',2,2,2);
 
         System.out.println(testBoard.displayBoard());
 
