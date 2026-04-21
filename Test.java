@@ -1,13 +1,15 @@
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Board testBoard = new Board();
         System.out.println(testBoard.displayBoard());
-        System.out.println(testBoard.getPieceAt(7,0).getLetter());
-        try {
-            testBoard.movePiece('R',1, 4,4);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        //System.out.println(testBoard.getPieceAt(7,0).getLetter());
+        //testBoard.movePiece('R',1, 4,4);
+        System.out.println(testBoard.getPieceAt(0,1).getLetter());
+        //testBoard.movePiece('k',2,3,2);
+        testBoard.movePiece('k',1,2,2);
+
+        System.out.println(testBoard.displayBoard());
+
 
 
     }
