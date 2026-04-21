@@ -27,6 +27,9 @@ public class Board {
             board[6][i] = new Pawn(1);
     }
 
+    public Board(Board other) {
+
+    }
     /**
      * Method to get a Piece object at a certain index of the board
      * @param y the y-position of the piece
@@ -54,7 +57,7 @@ public class Board {
                     // Checks if the piece trying to move is the same team as the specified location
                     if (!(spaceColor(nY,nX) == color)) {
                         // Checks if the piece can move to the specified location
-                        if (board[i][j].validMove(i, j, nY, nX, )) {
+                        if (board[i][j].validMove(i, j, nY, nX, new Board(this))) {
                             //Actually move the piece
                             board[nY][nX] = board[i][j];
                             board[i][j] = null;

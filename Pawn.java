@@ -2,10 +2,16 @@ public class Pawn extends Piece {
     /**
      * This variable keeps track of whether a pawn has moved for their initial move option.
      */
-    private boolean hasMoved = false;
+    protected boolean hasMoved;
 
     public Pawn(int color) {
         super(color);
+        this.hasMoved = false;
+    }
+
+    public Pawn(Pawn other) {
+        super(other.getColor());
+        this.hasMoved = other.hasMoved;
     }
 
     @Override

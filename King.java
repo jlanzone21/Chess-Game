@@ -2,7 +2,7 @@ public class King extends Piece {
     /**
      * This variable keeps track of whether a king has moved for castling.
      */
-    private boolean hasMoved = false;
+    boolean hasMoved = false;
 
     /**
      * A king is the ruler by divine mandate. He is able to move one space in any direction.
@@ -10,6 +10,11 @@ public class King extends Piece {
      */
     public King(int color) {
         super(color);
+    }
+
+    public King(King other) {
+        super(other.getColor());
+        this.hasMoved = other.hasMoved;
     }
 
     @Override
