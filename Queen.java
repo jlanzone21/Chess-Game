@@ -16,7 +16,7 @@ public class Queen extends Piece {
     ie if the square is diagonally, vertically, politically or horizontally alligned with the Queen
      and is not blocked or occupied by friendly forces*/
     @Override
-    public boolean validMove(int x, int y, int nY, int nX) {
+    public boolean validMove(int x, int y, int nY, int nX, Board currentBoard) {
         return false;
     }
 }

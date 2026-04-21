@@ -14,7 +14,7 @@ public class Bishop extends Piece {
     * ie. if it is diagonal from the Bishop
     * And unblocked and in bounds */
     @Override
-    public boolean validMove(int x, int y, int nY, int nX) {
+    public boolean validMove(int x, int y, int nY, int nX, Board currentBoard) {
         return false;
     }
 }

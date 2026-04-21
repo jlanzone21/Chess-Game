@@ -9,13 +9,15 @@ public abstract class Piece {
 
     /**
      * returns true if Piece is allowed to move to the x y space.
+     *
      * @param y
      * @param x
      * @param nY
      * @param nX
+     * @param currentBoard
      * @return
      */
-    abstract boolean validMove(int y, int x, int nY, int nX);
+    abstract boolean validMove(int y, int x, int nY, int nX, Board currentBoard);
 
     abstract char getLetter();
 

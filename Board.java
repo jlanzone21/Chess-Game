@@ -49,17 +49,21 @@ public class Board {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
                 // Checks if the color and letter of an object on the board match
-                if (board[i][j] != null && board[i][j].getColor() == color
+                if (board[i][j] != null && spaceColor(i,j) == color
                         && board[i][j].getLetter() == letter) {
                     // Checks if the piece trying to move is the same team as the specified location
-                    if (isFilled(i,j) == color) {
-                        throw new Exception("Invalid move: same team");
+                    if (!(spaceColor(nY,nX) == color)) {
+                        // Checks if the piece can move to the specified location
+                        if (board[i][j].validMove(i, j, nY, nX, )) {
+                            //Actually move the piece
+                            board[nY][nX] = board[i][j];
+                            board[i][j] = null;
+                        }
                     }
-                    // Checks if the piece can move to the specified location
-                    if (board[i][j].validMove(nX, nY, , ));
                 }
             }
         }
+        throw new Exception("Not a valid move");
     }
 
     /**
@@ -78,7 +82,7 @@ public class Board {
      * @param x the x-position to look at
      * @return int
      */
-    public int isFilled(int y, int x) {
+    public int spaceColor(int y, int x) {
         if (board[y][x] == null)
             return 0;
         else

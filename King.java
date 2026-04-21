@@ -25,10 +25,11 @@ public class King extends Piece {
      * @param x
      * @param nY
      * @param nX
+     * @param currentBoard
      * @return
      */
     @Override
-    public boolean validMove(int y, int x, int nY, int nX) {
-
+    public boolean validMove(int y, int x, int nY, int nX, Board currentBoard) {
+        return false;
     }
 }
