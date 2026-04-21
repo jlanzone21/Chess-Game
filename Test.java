@@ -10,6 +10,10 @@ public class Test {
 
         System.out.println(testBoard.displayBoard());
 
+        //testBoard.movePiece('R', 2,0,1);
+
+        //System.out.println(testBoard.displayBoard());
+
 
 
     }

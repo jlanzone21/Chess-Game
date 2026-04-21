@@ -120,7 +120,7 @@ public class Board {
         StringBuilder sb = new StringBuilder();
         sb.append("   a  b  c  d  e  f  g  h  \n");
         for (int i = 0; i < board.length; i++) {
-            sb.append(i+1).append("  ");
+            sb.append(i + 1).append("  ");
             for (int j = 0; j < board.length; j++) {
                 if (this.getPieceAt(i,j) != null) {
                     sb.append(this.getPieceAt(i, j).getLetter()).append("  ");
