@@ -13,7 +13,9 @@ public class Knight extends Piece {
 
     @Override
     public char getLetter() {
-        return 'k';
+        if(getColor() == 1)
+            return 'N';
+        else{return 'n';}
     }
 
     @Override

@@ -11,7 +11,9 @@ public class Pawn extends Piece {
 
     @Override
     public char getLetter() {
-        return 'p';
+        if(getColor() == 1)
+        return 'P';
+        else{return 'p';}
     }
 
     @Override
@@ -33,32 +35,22 @@ public class Pawn extends Piece {
      */
     @Override
     public boolean validMove(int y, int x, int nY, int nX, Board currentBoard) {
-        if (nY > 7 || nY < 0 || nX > 7 || nX < 0) {
-            return false;
+        if (!inBounds(nY,nX)){return false;}
+        //Black Double Jump Logic
+        if(getColor()==-1 && y == 1 && nX == x && nY == 3 && currentBoard.spaceColor(2, nX) == 0 && currentBoard.spaceColor(3, nX) == 0) {
+                return true;
         }
-        //Black
-        if(getColor()==2) {
-            //Double jump pawn logic
-            if(y == 2 && nX == x && nY == 4 && currentBoard.spaceColor(4,nX) == 0 && currentBoard.spaceColor(3,nX) == 0){
+        //White Double jump logic
+        else if(getColor()==1 && y == 6 && nX == x && nY == 4 && currentBoard.spaceColor(4,nX) == 0 && currentBoard.spaceColor(5,nX) == 0){
                 return true;
-            }
-            //move logic
-            else if(x== nX && y == nY - 1 && currentBoard.spaceColor(nY,nX) == 0){
-                return true;
-            }
         }
-        //White
-        else if(getColor()==1){
-            //Double jump pawn logic
-            if(y == 7 && nX == x && nY == 5 && currentBoard.spaceColor(5,nX) == 0 && currentBoard.spaceColor(6,nX) == 0){
-                return true;
-            }
-            //move logic
-            else if(x== nX && y == nY + 1 && currentBoard.spaceColor(nY,nX) == 0){
-                return true;
-            }
-            //capture logic
-
+        //move logic
+        else if(x== nX && y == nY + currentBoard.spaceColor(y,x) && currentBoard.spaceColor(nY,nX) == 0){
+            return true;
+        }
+        //capture logic
+        else if(abs(nX - x) == 1 && nY == y - currentBoard.spaceColor(y,x) && currentBoard.spaceColor(nY,nX) == -currentBoard.spaceColor(y,x)){
+            return true;
         }
 
 

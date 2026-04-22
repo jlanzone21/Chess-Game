@@ -5,16 +5,16 @@ public class Board {
      * Board is the class that holds all the Pieces and moves them around
      */
     public Board() {
-        board[0][0] = new Rook(2);
-        board[0][1] = new Knight(2);
-        board[0][2] = new Bishop(2);
-        board[0][3] = new Queen(2);
-        board[0][4] = new King(2);
-        board[0][5] = new Bishop(2);
-        board[0][6] = new Knight(2);
-        board[0][7] = new Rook(2);
+        board[0][0] = new Rook(-1);
+        board[0][1] = new Knight(-1);
+        board[0][2] = new Bishop(-1);
+        board[0][3] = new Queen(-1);
+        board[0][4] = new King(-1);
+        board[0][5] = new Bishop(-1);
+        board[0][6] = new Knight(-1);
+        board[0][7] = new Rook(-1);
         for (int i = 0; i < board.length; i++)
-            board[1][i] = new Pawn(2);
+            board[1][i] = new Pawn(-1);
         board[7][0] = new Rook(1);
         board[7][1] = new Knight(1);
         board[7][2] = new Bishop(1);
@@ -87,7 +87,7 @@ public class Board {
     }
 
     /**
-     * Returns 0 if empty, 1 if it has WHITE, 2 if it has BLACK
+     * Returns 0 if empty, 1 if it has WHITE, -1 if it has BLACK
      * @param y the y-position to look at
      * @param x the x-position to look at
      * @return int

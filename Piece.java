@@ -1,6 +1,6 @@
 public abstract class Piece {
 
-    // Black is 2 and White is 1
+    // Black is -1 and White is 1
     private final int COLOR;
 
     public Piece(int color) {
