@@ -5,26 +5,26 @@ public class Board {
      * Board is the class that holds all the Pieces and moves them around
      */
     public Board() {
-        board[0][0] = new Rook(2);
-        board[0][1] = new Knight(2);
-        board[0][2] = new Bishop(2);
-        board[0][3] = new Queen(2);
-        board[0][4] = new King(2);
-        board[0][5] = new Bishop(2);
-        board[0][6] = new Knight(2);
-        board[0][7] = new Rook(2);
+        board[0][0] = new Rook(1);
+        board[0][1] = new Knight(1);
+        board[0][2] = new Bishop(1);
+        board[0][3] = new Queen(1);
+        board[0][4] = new King(1);
+        board[0][5] = new Bishop(1);
+        board[0][6] = new Knight(1);
+        board[0][7] = new Rook(1);
         for (int i = 0; i < board.length; i++)
-            board[1][i] = new Pawn(2);
-        board[7][0] = new Rook(1);
-        board[7][1] = new Knight(1);
-        board[7][2] = new Bishop(1);
-        board[7][3] = new Queen(1);
-        board[7][4] = new King(1);
-        board[7][5] = new Bishop(1);
-        board[7][6] = new Knight(1);
-        board[7][7] = new Rook(1);
+            board[1][i] = new Pawn(1);
+        board[7][0] = new Rook(2);
+        board[7][1] = new Knight(2);
+        board[7][2] = new Bishop(2);
+        board[7][3] = new Queen(2);
+        board[7][4] = new King(2);
+        board[7][5] = new Bishop(2);
+        board[7][6] = new Knight(2);
+        board[7][7] = new Rook(2);
         for (int i = 0; i < board.length; i++)
-            board[6][i] = new Pawn(1);
+            board[6][i] = new Pawn(2);
     }
 
     public Board(Board other) {
@@ -118,9 +118,13 @@ public class Board {
 
     public String displayBoard() {
         StringBuilder sb = new StringBuilder();
-        sb.append("   a  b  c  d  e  f  g  h  \n");
-        for (int i = 0; i < board.length; i++) {
-            sb.append(i + 1).append("  ");
+        // TODO : Change this back
+        //sb.append("   a  b  c  d  e  f  g  h  \n");
+        sb.append("x->0  1  2  3  4  5  6  7  \n");
+        for (int i = 7; i >= 0; i--) {
+            // TODO : Change this back
+            sb.append(i).append("  ");
+            //sb.append(i + 1).append("  ");
             for (int j = 0; j < board.length; j++) {
                 if (this.getPieceAt(i,j) != null) {
                     sb.append(this.getPieceAt(i, j).getLetter()).append("  ");
