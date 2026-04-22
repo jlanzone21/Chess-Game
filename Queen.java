@@ -13,7 +13,9 @@ public class Queen extends Piece {
 
     @Override
     public char getLetter() {
-        return 'Q';
+        if(getColor() == 1)
+            return 'Q';
+        else{return 'q';}
     }
 
     @Override

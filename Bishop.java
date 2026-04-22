@@ -11,7 +11,9 @@ public class Bishop extends Piece {
 
     @Override
     public char getLetter() {
-        return 'B';
+        if(getColor() == 1)
+            return 'B';
+        else{return 'b';}
     }
 
     @Override

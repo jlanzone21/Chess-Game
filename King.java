@@ -19,7 +19,9 @@ public class King extends Piece {
 
     @Override
     public char getLetter() {
-        return 'K';
+        if(getColor() == 1)
+            return 'K';
+        else{return 'k';}
     }
 
     @Override
