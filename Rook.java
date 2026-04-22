@@ -36,19 +36,19 @@ public class Rook extends Piece {
      * @param nY
      * @param nX
      * @param currentBoard
-     * @return
+     * @return boolean - whether a Rook can move to the desired location
      */
     @Override
     public boolean validMove(int y, int x, int nY, int nX, Board currentBoard) {
-        // Checks if new location is in the same row
+        // Checks if new location is in the same column
         if (x == nX) {
-            for (int i = y; i < 8; i++) {
+            for (int i = y+1; i < nY; i++) {
                 // Checks if there is a piece in the way
                 if (currentBoard.spaceColor(i, x) != 0 && i != nY) {
                     return false;
                 }
             }
-            for (int i = y; i >= 0; i--) {
+            for (int i = y-1; i >= nY; i--) {
                 // Checks if there is a piece in the way
                 if (currentBoard.spaceColor(i, x) != 0 && i != nY) {
                     return false;
@@ -56,15 +56,15 @@ public class Rook extends Piece {
             }
             return true;
         }
-        // Checks if in the same column
+        // Checks if in the same row
         else if (y == nY) {
-            for (int i = x; i < 8; i++) {
+            for (int i = x+1; i < nX; i++) {
                 // Checks if there is a piece in the way
                 if (currentBoard.spaceColor(y, i) != 0 && i != nX) {
                     return false;
                 }
             }
-            for (int i = x; i >= 0; i--) {
+            for (int i = x-1; i >= nX; i--) {
                 // Checks if there is a piece in the way
                 if (currentBoard.spaceColor(y, i) != 0 && i != nX) {
                     return false;
