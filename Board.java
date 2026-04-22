@@ -15,16 +15,16 @@ public class Board {
         board[0][7] = new Rook(1);
         for (int i = 0; i < board.length; i++)
             board[1][i] = new Pawn(1);
-        board[7][0] = new Rook(2);
-        board[7][1] = new Knight(2);
-        board[7][2] = new Bishop(2);
-        board[7][3] = new Queen(2);
-        board[7][4] = new King(2);
-        board[7][5] = new Bishop(2);
-        board[7][6] = new Knight(2);
-        board[7][7] = new Rook(2);
+        board[7][0] = new Rook(-1);
+        board[7][1] = new Knight(-1);
+        board[7][2] = new Bishop(-1);
+        board[7][3] = new Queen(-1);
+        board[7][4] = new King(-1);
+        board[7][5] = new Bishop(-1);
+        board[7][6] = new Knight(-1);
+        board[7][7] = new Rook(-1);
         for (int i = 0; i < board.length; i++)
-            board[6][i] = new Pawn(2);
+            board[6][i] = new Pawn(-1);
     }
 
     public Board(Board other) {
