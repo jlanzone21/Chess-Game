@@ -119,12 +119,12 @@ public class Board {
     public String displayBoard() {
         StringBuilder sb = new StringBuilder();
         // TODO : Change this back
-        //sb.append("   a  b  c  d  e  f  g  h  \n");
-        sb.append("x->0  1  2  3  4  5  6  7  \n");
+        sb.append("   a  b  c  d  e  f  g  h  \n");
+        //sb.append("x->0  1  2  3  4  5  6  7  \n");
         for (int i = 7; i >= 0; i--) {
             // TODO : Change this back
-            sb.append(i).append("  ");
-            //sb.append(i + 1).append("  ");
+            //sb.append(i).append("  ");
+            sb.append(i + 1).append("  ");
             for (int j = 0; j < board.length; j++) {
                 if (this.getPieceAt(i,j) != null) {
                     sb.append(this.getPieceAt(i, j).getLetter()).append("  ");

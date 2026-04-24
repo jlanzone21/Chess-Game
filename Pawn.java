@@ -11,7 +11,9 @@ public class Pawn extends Piece {
 
     @Override
     public char getLetter() {
-        return 'p';
+        if(getColor() == 1)
+            return 'P';
+        else{return 'p';}
     }
 
     @Override
@@ -33,7 +35,7 @@ public class Pawn extends Piece {
      */
     @Override
     public boolean validMove(int y, int x, int nY, int nX, Board currentBoard) {
-        if (nY > 7 || nY < 0 || nX > 7 || nX < 0) {
+        if (!inBounds(nY,nX)) {
             return false;
         }
         //Black

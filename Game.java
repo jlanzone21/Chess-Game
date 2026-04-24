@@ -26,6 +26,40 @@ public class Game {
      * @param args
      */
     public static void main(String[] args) {
+        //new GUI();
+        Scanner input = new Scanner(System.in);
+        int turn = 1;
+        Board gameBoard = new Board();
+        System.out.print(gameBoard.displayBoard());
 
+        gameLoop:
+        while (true) {
+            while (true) {
+                // Loop to make sure that a person makes a valid move
+                if (turn == 1)
+                    System.out.print("\nYour move White(ex. Nc3): ");
+                else
+                    System.out.print("\nYour move Black(ex. nf6): ");
+                String word = input.next();
+                if (word.toLowerCase().equals("quit"))
+                    break gameLoop;
+                char letter;
+                if (turn == 1)
+                    letter = word.toUpperCase().charAt(0);
+                else
+                    letter = word.toLowerCase().charAt(0);
+                int row = word.toLowerCase().charAt(1) - 97;
+                int col = word.charAt(2) - 49;
+                try {
+                    gameBoard.movePiece(letter, turn, col, row);
+                    System.out.print(gameBoard.displayBoard());
+                    break;
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            //Switches turn
+            turn = -1*turn;
+        }
     }
 }

@@ -28,6 +28,7 @@ public class Queen extends Piece {
      and is not blocked or occupied by friendly forces*/
     @Override
     public boolean validMove(int x, int y, int nY, int nX, Board currentBoard) {
+
         return false;
     }
 }

@@ -26,35 +26,36 @@ public class Bishop extends Piece {
     * And unblocked and in bounds */
     @Override
     public boolean validMove(int x, int y, int nY, int nX, Board currentBoard) {
-        int ratio = (x-nY+1)/(y-nX+1);
-        if (ratio == 1 || ratio == -1) {
-            // Check whether pieces are in the way or not
-            // TODO : FInish this
-            int xstart, xfinish, ystart, yfinish;
-            if (x > nX) {
-                xstart = nX+1;
-                xfinish = x;
-            } else {
-                xstart = x+1;
-                xfinish = nX;
-            }
-            if (y > nY) {
-                ystart = nY+1;
-                yfinish = y;
-            } else {
-                ystart = y+1;
-                yfinish = nY;
-            }
-            for (int i = xstart; i < xfinish; i++) {
-                for (int j = ystart; j < yfinish; j++) {
-                    if (currentBoard.spaceColor(j,i) != 0) {
-                        return false;
+        if (inBounds(nY, nX)) {
+            int ratio = (x - nY + 1) / (y - nX + 1);
+            if (ratio == 1 || ratio == -1) {
+                // Check whether pieces are in the way or not
+                // TODO : FInish this
+                int xstart, xfinish, ystart, yfinish;
+                if (x > nX) {
+                    xstart = nX + 1;
+                    xfinish = x;
+                } else {
+                    xstart = x + 1;
+                    xfinish = nX;
+                }
+                if (y > nY) {
+                    ystart = nY + 1;
+                    yfinish = y;
+                } else {
+                    ystart = y + 1;
+                    yfinish = nY;
+                }
+                for (int i = xstart; i < xfinish; i++) {
+                    for (int j = ystart; j < yfinish; j++) {
+                        if (currentBoard.spaceColor(j, i) != 0) {
+                            return false;
+                        }
                     }
                 }
+                return true;
             }
-            return true;
         }
-
         return false;
     }
 }

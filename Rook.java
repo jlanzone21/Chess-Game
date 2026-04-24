@@ -40,6 +40,9 @@ public class Rook extends Piece {
      */
     @Override
     public boolean validMove(int y, int x, int nY, int nX, Board currentBoard) {
+        if (!inBounds(nY, nX)) {
+            return false;
+        }
         // Checks if new location is in the same column
         if (x == nX) {
             for (int i = y+1; i < nY; i++) {

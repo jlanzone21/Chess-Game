@@ -42,6 +42,15 @@ public class King extends Piece {
      */
     @Override
     public boolean validMove(int y, int x, int nY, int nX, Board currentBoard) {
+        // Checks if one space away
+        if (inBounds(nY,nX)) {
+            if (y - 1 <= nY && y + 1 >= nY) {
+                if (x - 1 <= nX && x + 1 >= nX) {
+                    // TODO : test whether in check using other method
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }
