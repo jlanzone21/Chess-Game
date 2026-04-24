@@ -29,23 +29,9 @@ public class Bishop extends Piece {
     @Override
     public boolean validMove(int y, int x, int nY, int nX, Board currentBoard) {
         if (inBounds(nY, nX)) {
-            if (abs(y - nY)+1 == abs(x - nX)+1 || abs(x - nY)+1 == abs(y - nX)+1) {
+            //if (abs(y - nY) == abs(x - nX) || abs(x - nY) == abs(y - nX)) {
+            if (abs(y - nY) == abs(x - nX)) {
                 // Check whether pieces are in the way or not
-                // TODO : Finish the part about determining whether a piece is in the way
-//                if (x > nX) {
-//                    xstart = nX + 1;
-//                    xfinish = x;
-//                } else {
-//                    xstart = x + 1;
-//                    xfinish = nX;
-//                }
-//                if (y > nY) {
-//                    ystart = nY + 1;
-//                    yfinish = y;
-//                } else {
-//                    ystart = y + 1;
-//                    yfinish = nY;
-//                }
                 // Start at the Bishop's current square
                 int xstart = x,ystart = y;
                 // Move one step in the direction of the desired location

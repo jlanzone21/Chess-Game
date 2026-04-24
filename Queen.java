@@ -27,8 +27,12 @@ public class Queen extends Piece {
     ie if the square is diagonally, vertically, politically or horizontally alligned with the Queen
      and is not blocked or occupied by friendly forces*/
     @Override
-    public boolean validMove(int x, int y, int nY, int nX, Board currentBoard) {
+    public boolean validMove(int y, int x, int nY, int nX, Board currentBoard) {
+        if (!inBounds(nY, nX))
+            return false;
+        Rook rook = new Rook(this.getColor());
+        Bishop bishop = new Bishop(this.getColor());
 
-        return false;
+        return bishop.validMove(y, x, nY, nX, currentBoard) || rook.validMove(y, x, nY, nX, currentBoard);
     }
 }
