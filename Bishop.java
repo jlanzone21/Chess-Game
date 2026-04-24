@@ -1,3 +1,5 @@
+import static java.lang.Math.abs;
+
 public class Bishop extends Piece {
 
     // Bishops move diagonally as far as they want
@@ -25,33 +27,46 @@ public class Bishop extends Piece {
     * ie. if it is diagonal from the Bishop
     * And unblocked and in bounds */
     @Override
-    public boolean validMove(int x, int y, int nY, int nX, Board currentBoard) {
+    public boolean validMove(int y, int x, int nY, int nX, Board currentBoard) {
         if (inBounds(nY, nX)) {
-            int ratio = (x - nY + 1) / (y - nX + 1);
-            if (ratio == 1 || ratio == -1) {
+            if (abs(y - nY)+1 == abs(x - nX)+1 || abs(x - nY)+1 == abs(y - nX)+1) {
                 // Check whether pieces are in the way or not
-                // TODO : FInish this
-                int xstart, xfinish, ystart, yfinish;
-                if (x > nX) {
-                    xstart = nX + 1;
-                    xfinish = x;
-                } else {
-                    xstart = x + 1;
-                    xfinish = nX;
-                }
-                if (y > nY) {
-                    ystart = nY + 1;
-                    yfinish = y;
-                } else {
-                    ystart = y + 1;
-                    yfinish = nY;
-                }
-                for (int i = xstart; i < xfinish; i++) {
-                    for (int j = ystart; j < yfinish; j++) {
-                        if (currentBoard.spaceColor(j, i) != 0) {
+                // TODO : Finish the part about determining whether a piece is in the way
+//                if (x > nX) {
+//                    xstart = nX + 1;
+//                    xfinish = x;
+//                } else {
+//                    xstart = x + 1;
+//                    xfinish = nX;
+//                }
+//                if (y > nY) {
+//                    ystart = nY + 1;
+//                    yfinish = y;
+//                } else {
+//                    ystart = y + 1;
+//                    yfinish = nY;
+//                }
+                // Start at the Bishop's current square
+                int xstart = x,ystart = y;
+                // Move one step in the direction of the desired location
+                while (true) {
+                    if (nY > ystart)
+                        ystart++;
+                    else
+                        ystart--;
+                    if (nX > xstart)
+                        xstart++;
+                    else
+                        xstart--;
+                    // If it is NOT the desired location check if its empty
+                    if (!(ystart == nY && xstart == nX)) {
+                        if (currentBoard.spaceColor(ystart, xstart) != 0) {
                             return false;
                         }
+                    } else {
+                        break;
                     }
+
                 }
                 return true;
             }
