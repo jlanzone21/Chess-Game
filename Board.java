@@ -87,7 +87,7 @@ public class Board {
     }
 
     /**
-     * Returns 0 if empty, 1 if it has WHITE, 2 if it has BLACK
+     * Returns 0 if empty, 1 if it has WHITE, -1 if it has BLACK
      * @param y the y-position to look at
      * @param x the x-position to look at
      * @return int
@@ -100,23 +100,6 @@ public class Board {
     }
 
     /**
-     * Looks for the king and returns its position
-     * @param color the y-position to look at
-     * @return "yx" the x-position and y-position of the king smooshed into a parseable String
-     */
-    public String whereTheHuzzAt(int color) {
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board.length; j++) {
-                if (getPieceAt(i, j).getColor() == color) {
-                    if (getPieceAt(i, j).getLetter() == 'k' || getPieceAt(i, j).getLetter() == 'K')
-                        return i + "" + j;
-                }
-            }
-        }
-        return null;
-    }
-
-    /**
      * If one team is in check and has no validMove, then they are in Checkmate and the other team wins
      * @return 1 for WHITE and 2 for BLACK wins, 0 if no win, and -1 if stalemate
      */
@@ -125,29 +108,19 @@ public class Board {
     }
 
     /**
-     * Returns true if any piece of the OPPOSITE color has a validMove on your King
+     * Returns true if any opposing piece has a validMove on your King
      * @return boolean
      */
-    public boolean inCheck(int myTeamColor) {
+    public boolean inCheck() {
        // if Object on board is not my color and has validMove at my King's location, I am in check
-        int oppositeTeamColor = myTeamColor*-1;
-        int kingY = whereTheHuzzAt(myTeamColor).charAt(0)-'0';
-        int kingX = whereTheHuzzAt(myTeamColor).charAt(1)-'0';
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board.length; j ++) {
-                if (getPieceAt(i,j).getColor() == oppositeTeamColor &&
-                        getPieceAt(i,j).validMove(i, j, kingY, kingX, this)) {
-                    return true;
-                }
-            }
-        }
         return false;
     }
 
     public String displayBoard() {
         StringBuilder sb = new StringBuilder();
         // TODO : Change this back
-        sb.append("   a  b  c  d  e  f  g  h  \n");
+        sb.append("\n");
+        //sb.append("\n   a  b  c  d  e  f  g  h  ");
         //sb.append("x->0  1  2  3  4  5  6  7  \n");
         for (int i = 7; i >= 0; i--) {
             // TODO : Change this back
@@ -162,6 +135,7 @@ public class Board {
             }
             sb.append("\n");
         }
+        sb.append("   a  b  c  d  e  f  g  h  \n");
         return sb.toString();
     }
 }

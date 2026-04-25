@@ -38,26 +38,11 @@ public class Pawn extends Piece {
         if (!inBounds(nY,nX)) {
             return false;
         }
-        //Black
+        //White
         // TODO : Make this logic consistent with a zero array (start at 0 not 1. We will change the input to computer code in Game)
-        if(getColor()==-1) {
+        if(getColor()==1) {
             //Double jump pawn logic
             if(y == 1 && nX == x && nY == 3 && currentBoard.spaceColor(3,nX) == 0 && currentBoard.spaceColor(2,nX) == 0){
-                return true;
-            }
-            //move logic
-            else if(x== nX && y == nY + 1 && currentBoard.spaceColor(nY,nX) == 0){
-                return true;
-            }
-            //capture logic
-            else if(abs(nX - x) == 1 && nY + 1 == y && currentBoard.spaceColor(nY,nX) == 1){
-                return true;
-            }
-        }
-        //White
-        else if(getColor()==1){
-            //Double jump pawn logic
-            if(y == 6 && nX == x && nY == 4 && currentBoard.spaceColor(4,nX) == 0 && currentBoard.spaceColor(5,nX) == 0){
                 return true;
             }
             //move logic
@@ -66,6 +51,21 @@ public class Pawn extends Piece {
             }
             //capture logic
             else if(abs(nX - x) == 1 && nY - 1 == y && currentBoard.spaceColor(nY,nX) == -1){
+                return true;
+            }
+        }
+        //Black
+        else if(getColor()==-1){
+            //Double jump pawn logic
+            if(y == 6 && nX == x && nY == 4 && currentBoard.spaceColor(4,nX) == 0 && currentBoard.spaceColor(5,nX) == 0){
+                return true;
+            }
+            //move logic
+            else if(x== nX && y == nY + 1 && currentBoard.spaceColor(nY,nX) == 0){
+                return true;
+            }
+            //capture logic
+            else if(abs(nX - x) == 1 && nY + 1 == y && currentBoard.spaceColor(nY,nX) == 1){
                 return true;
             }
 
