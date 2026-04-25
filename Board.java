@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Board {
     private Piece[][] board = new Piece[8][8];
 
@@ -64,6 +66,24 @@ public class Board {
                     if (!(spaceColor(nY,nX) == color)) {
                         // Checks if the piece can move to the specified location
                         if (board[i][j].validMove(i, j, nY, nX, new Board(this))) {
+                            if((letter =='p'|| letter =='P') && (nY == 0 && color == -1) || (nY == 7 && color == 1)){
+                                Scanner sc = new Scanner(System.in);
+                                System.out.println("Promote to: (ex. Q)");
+                                char c = sc.next().trim().charAt(0);
+                                if(Character.toLowerCase(c)=='q'){
+                                    board[i][j] = new Queen(color);
+                                } else if (Character.toLowerCase(c)=='n') {
+                                    board[i][j] = new Knight(color);
+                                } else if (Character.toLowerCase(c)=='r') {
+                                    board[i][j] = new Rook(color);
+                                } else if (Character.toLowerCase(c)=='b') {
+                                    board[i][j] = new Bishop(color);
+                                } else if (Character.toLowerCase(c)=='p') {
+                                    board[i][j] = new Pawn(color);
+                                } else {
+                                    System.out.println("Character not recognized. ");
+                                }
+                            }
                             //Actually move the piece
                             board[nY][nX] = board[i][j];
                             board[i][j] = null;

@@ -47,10 +47,16 @@ public class King extends Piece {
             if (y - 1 <= nY && y + 1 >= nY) {
                 if (x - 1 <= nX && x + 1 >= nX) {
                     // TODO : test whether in check using other method
+                    if(!hasMoved){
+                        hasMoved=true;
+                    }
                     return true;
                 }
             }
         }
         return false;
     }
+
+   // Rules for check: King is threatened - meaning an opposing piece can capture him. In Check.
+    // Next move must make this check stop. By moving the king, blocking the threat, or by capturing the threat.
 }

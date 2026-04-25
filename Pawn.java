@@ -68,6 +68,7 @@ public class Pawn extends Piece {
             else if(abs(nX - x) == 1 && nY + 1 == y && currentBoard.spaceColor(nY,nX) == 1){
                 return true;
             }
+            
 
         }
 
