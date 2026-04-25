@@ -100,19 +100,70 @@ public class Board {
     }
 
     /**
+     * Checks if a king can move to a new square without being in check
+     * @param nY the y-position to look at
+     * @param nX the x-position to look at
+     * @param color the color of the king
+     * @return "yx" the x-position and y-position of the king smooshed into a parseable String
+     */
+    public boolean isSafeKingMove(int nY, int nX, int color) {
+        Board copy = new Board(this);
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+
+                }
+            }
+        return false;
+    }
+
+    /**
+     * Looks for the king and returns its position
+     * @param color the y-position to look at
+     * @return "yx" the x-position and y-position of the king smooshed into a parseable String
+     */
+    public String whereTheHuzzAt(int color) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                if (getPieceAt(i, j).getColor() == color) {
+                    if (getPieceAt(i, j).getLetter() == 'k' || getPieceAt(i, j).getLetter() == 'K')
+                        return i + "" + j;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * If one team is in check and has no validMove, then they are in Checkmate and the other team wins
      * @return 1 for WHITE and 2 for BLACK wins, 0 if no win, and -1 if stalemate
      */
-    public int hasWon() {
+    public int hasWon(int activePlayerColor) {
+        int oppositePlayerColor = activePlayerColor *-1;
+        if (inCheck(oppositePlayerColor)) {
+            // checks whether the king can move to a new spot
+                        // TODO : check whether the oppositePlayer has any valid moves
+        }
         return 0;
     }
 
     /**
-     * Returns true if any opposing piece has a validMove on your King
+     * Returns true if any piece of the OPPOSITE color has a validMove on your King
      * @return boolean
      */
-    public boolean inCheck() {
+    public boolean inCheck(int activePlayerColor) {
        // if Object on board is not my color and has validMove at my King's location, I am in check
+        int oppositePlayerColor = activePlayerColor *-1;
+        int kingY = whereTheHuzzAt(activePlayerColor).charAt(0)-'0';
+        int kingX = whereTheHuzzAt(activePlayerColor).charAt(1)-'0';
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j ++) {
+                if (getPieceAt(i,j).getColor() == oppositePlayerColor &&
+                        getPieceAt(i,j).validMove(i, j, kingY, kingX, this)) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
