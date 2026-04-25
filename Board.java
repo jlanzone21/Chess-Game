@@ -66,9 +66,9 @@ public class Board {
                     if (!(spaceColor(nY,nX) == color)) {
                         // Checks if the piece can move to the specified location
                         if (board[i][j].validMove(i, j, nY, nX, new Board(this))) {
-                            if((letter =='p'|| letter =='P') && (nY == 0 && color == -1) || (nY == 7 && color == 1)){
+                            if((letter =='p'|| letter =='P') && ((nY == 0 && color == -1) || (nY == 7 && color == 1))){
                                 Scanner sc = new Scanner(System.in);
-                                System.out.println("Promote to: (ex. Q)");
+                                System.out.print("Promote to (ex. Q):");
                                 char c = sc.next().trim().charAt(0);
                                 if(Character.toLowerCase(c)=='q'){
                                     board[i][j] = new Queen(color);
@@ -94,6 +94,80 @@ public class Board {
             }
         }
         throw new Exception("Not a valid move");
+    }
+
+    public void kingSideCastle(int turn) throws Exception {
+        if(turn == 1){
+            if(getPieceAt(0,4).getLetter() == 'K' && getPieceAt(0,7).getLetter() == 'R'){
+                King k = (King) getPieceAt(0,4);
+                Rook r = (Rook) getPieceAt(0,7);
+                if(!k.getHasMoved() && this.spaceColor(0,5) == 0 && this.spaceColor(0,6) == 0 && !r.getHasMoved()) {
+                    board[0][6] = board[0][4];
+                    board[0][5] = board[0][7];
+                    board[0][4] = null;
+                    board[0][7] = null;
+                    k.hasMoved();
+                    r.hasMoved();
+                }
+                else { throw new Exception("Castle Failed");}
+            }
+            else { throw new Exception("Castle Failed");}
+        }
+        else if (turn == -1) {
+            if(board[7][4].getLetter() == 'k' && board[7][7].getLetter() == 'r'){
+                King k = (King) getPieceAt(7,4);
+                Rook r = (Rook) getPieceAt(7,7);
+                if(!k.getHasMoved() && this.spaceColor(7,5) == 0 && this.spaceColor(7,6) == 0 && !r.getHasMoved()){
+                    board[7][5] = board[7][7];
+                    board[7][6] = board[7][4];
+                    board[7][7] = null;
+                    board[7][4] = null;
+                    k.hasMoved();
+                    r.hasMoved();
+                }
+                else { throw new Exception("Castle Failed");}
+            }
+            else { throw new Exception("Castle Failed");}
+        }
+    }
+
+
+
+    public void queenSideCastle( int turn) throws Exception {
+        if(turn == 1){
+            if(getPieceAt(0,4).getLetter() == 'K' && getPieceAt(0,0).getLetter() == 'R'){
+                King k = (King) getPieceAt(0,4);
+                Rook r = (Rook) getPieceAt(0,0);
+                if(!k.getHasMoved() && this.spaceColor(0,3) == 0 && this.spaceColor(0,2) == 0 && this.spaceColor(0,1) == 0 && !r.getHasMoved()) {
+                    board[0][2] = board[0][4];
+                    board[0][3] = board[0][0];
+                    board[0][4] = null;
+                    board[0][0] = null;
+                    k.hasMoved();
+                    r.hasMoved();
+                }
+                else { throw new Exception("Castle Failed");}
+            }
+            else { throw new Exception("Castle Failed");}
+        }
+        else if (turn == -1) {
+            if(getPieceAt(7,4).getLetter() == 'k' && getPieceAt(7,0).getLetter() == 'r'){
+                King k = (King) getPieceAt(7,4);
+                Rook r = (Rook) getPieceAt(7,0);
+                if(!k.getHasMoved() && this.spaceColor(7,3) == 0 && this.spaceColor(7,2) == 0 && this.spaceColor(7,1) == 0 && !r.getHasMoved()){
+                    board[7][3] = board[7][0];
+                    board[7][2] = board[7][4];
+                    board[7][0] = null;
+                    board[7][4] = null;
+                    k.hasMoved();
+                    r.hasMoved();
+                }
+                else { throw new Exception("Castle Failed");}
+            }
+            else { throw new Exception("Castle Failed");
+            }
+        }
+
     }
 
     /**

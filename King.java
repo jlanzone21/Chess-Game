@@ -2,7 +2,7 @@ public class King extends Piece {
     /**
      * This variable keeps track of whether a king has moved for castling.
      */
-    boolean hasMoved = false;
+    private boolean hasMoved = false;
 
     /**
      * A king is the ruler by divine mandate. He is able to move one space in any direction.
@@ -57,6 +57,14 @@ public class King extends Piece {
         return false;
     }
 
-   // Rules for check: King is threatened - meaning an opposing piece can capture him. In Check.
+    public boolean getHasMoved() {
+        return hasMoved;
+    }
+
+    public void hasMoved() {
+        hasMoved = true;
+    }
+
+    // Rules for check: King is threatened - meaning an opposing piece can capture him. In Check.
     // Next move must make this check stop. By moving the king, blocking the threat, or by capturing the threat.
 }

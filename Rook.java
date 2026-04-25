@@ -57,6 +57,8 @@ public class Rook extends Piece {
                     return false;
                 }
             }
+            if(!hasMoved)
+                hasMoved = true;
             return true;
         }
         // Checks if in the same row
@@ -73,10 +75,19 @@ public class Rook extends Piece {
                     return false;
                 }
             }
+            if(!hasMoved)
+                hasMoved = true;
             return true;
         } else {
             return false;
         }
+    }
+    public boolean getHasMoved() {
+        return hasMoved;
+    }
+
+    public void hasMoved() {
+        hasMoved = true;
     }
 }
 

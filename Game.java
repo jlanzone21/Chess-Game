@@ -5,7 +5,6 @@ import java.util.Stack;
  * This class will hold all the game logic
  */
 public class Game {
-
     private boolean playerTurn = true;
     Board board = new Board();
 
@@ -60,6 +59,25 @@ public class Game {
                     }
                 }
 
+                    // castle logic
+                    if (word.equals("O-O")) {
+                        try {
+                            gameBoard.kingSideCastle(turn);
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                            continue;
+                        }
+                    }
+
+                    if (word.equals("O-O-O")) {
+                        try {
+                            gameBoard.queenSideCastle(turn);
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                            continue;
+                        }
+                    }
+
                 // Parses input from scanner into correct movePiece() format
                 char letter;
                 if (turn == 1)
@@ -78,9 +96,11 @@ public class Game {
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
+
             }
             //Switches turn
             turn = -1*turn;
         }
     }
 }
+
