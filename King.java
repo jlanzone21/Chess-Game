@@ -30,6 +30,30 @@ public class King extends Piece {
     }
 
     /**
+     * Checks if a king can move to a new square without being in check
+     * @param nY the y-position to look at
+     * @param nX the x-position to look at
+     * @param currentBoard board object
+     * @return boolean whether the King is in ch
+     */
+    public boolean isSafeMove(int nY, int nX, Board currentBoard) {
+        Board copy = new Board(currentBoard);
+        int kingY = currentBoard.whereTheHuzzAt(getColor()).charAt(0)-'0';
+        int kingX = currentBoard.whereTheHuzzAt(getColor()).charAt(1)-'0';
+
+        try {
+            copy.movePieceAt(getColor(), kingY, kingX, nY, nX);
+        } catch (Exception e) {
+            return false;
+        }
+
+        if (copy.inCheck(getColor())) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * returns true if the space is one square away,
      * does not put the king in check and is not occupied with a same team piece .
      *
@@ -46,11 +70,9 @@ public class King extends Piece {
         if (inBounds(nY,nX)) {
             if (y - 1 <= nY && y + 1 >= nY) {
                 if (x - 1 <= nX && x + 1 >= nX) {
-                    // TODO : test whether in check using other method
-                    if(!hasMoved){
-                        hasMoved=true;
+                    if (isSafeMove(nY,nX,currentBoard)) {
+                        return true;
                     }
-                    return true;
                 }
             }
         }

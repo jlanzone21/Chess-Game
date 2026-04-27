@@ -80,12 +80,18 @@ public class Game {
 
                 // Parses input from scanner into correct movePiece() format
                 char letter;
-                if (turn == 1)
-                    letter = word.toUpperCase().charAt(0);
-                else
-                    letter = word.toLowerCase().charAt(0);
-                int row = word.toLowerCase().charAt(1) - 97;
-                int col = word.charAt(2) - 49;
+                int row, col;
+                try {
+                    if (turn == 1)
+                        letter = word.toUpperCase().charAt(0);
+                    else
+                        letter = word.toLowerCase().charAt(0);
+                    row = word.toLowerCase().charAt(1) - 97;
+                    col = word.charAt(2) - 49;
+                } catch (StringIndexOutOfBoundsException e){
+                    System.out.println("Invalid input form");
+                    continue;
+                }
 
                 // Tries to move the piece and catches errors if it fails
                 try {

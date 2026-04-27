@@ -171,13 +171,35 @@ public class Board {
     }
 
     /**
-     * Removes the Piece object at Coordinates [y][x] from the board array
-     * Represents taking a piece
-     * @param y the y-position of the piece
-     * @param x the x-position of the piece
+     * Directly moves a piece using its location on the board
+     * Checks the piece's validMove and then moves the piece to the desired location
+     * @param color the color of the piece
+     * @param y the y-coordinate
+     * @param x the x-coordinate
+     * @param nY the y-location of the desired move
+     * @param nX the x-location of the desired move
      */
-    public void removePieceAt(int y, int x) {
-
+    public void movePieceAt(int color, int y, int x, int nY, int nX) throws Exception {
+        // Checks if the piece trying to move is the same team as the specified location
+        if (!(spaceColor(nY,nX) == color)) {
+            // Checks if the piece can move to the specified location
+            if (board[y][x] != null) {
+                // If its a king move differently to avoid infinite loop
+                if (board[y][x].getLetter() == 'K' || board[y][x].getLetter() == 'k') {
+                    //Actually move the piece
+                    board[nY][nX] = board[y][x];
+                    board[y][x] = null;
+                    return;
+                }
+                if (board[y][x].validMove(y, x, nY, nX, new Board(this))) {
+                    //Actually move the piece
+                    board[nY][nX] = board[y][x];
+                    board[y][x] = null;
+                    return;
+                }
+            }
+        }
+        throw new Exception("Not a valid move");
     }
 
     /**
@@ -194,24 +216,6 @@ public class Board {
     }
 
     /**
-     * Checks if a king can move to a new square without being in check
-     * @param nY the y-position to look at
-     * @param nX the x-position to look at
-     * @param color the color of the king
-     * @return "yx" the x-position and y-position of the king smooshed into a parseable String
-     */
-    public boolean isSafeKingMove(int nY, int nX, int color) {
-        Board copy = new Board(this);
-
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board.length; j++) {
-
-                }
-            }
-        return false;
-    }
-
-    /**
      * Looks for the king and returns its position
      * @param color the y-position to look at
      * @return "yx" the x-position and y-position of the king smooshed into a parseable String
@@ -219,7 +223,7 @@ public class Board {
     public String whereTheHuzzAt(int color) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
-                if (getPieceAt(i, j).getColor() == color) {
+                if (board[i][j] != null && getPieceAt(i, j).getColor() == color) {
                     if (getPieceAt(i, j).getLetter() == 'k' || getPieceAt(i, j).getLetter() == 'K')
                         return i + "" + j;
                 }
@@ -252,7 +256,7 @@ public class Board {
         int kingX = whereTheHuzzAt(activePlayerColor).charAt(1)-'0';
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j ++) {
-                if (getPieceAt(i,j).getColor() == oppositePlayerColor &&
+                if (board[i][j] != null && getPieceAt(i,j).getColor() == oppositePlayerColor &&
                         getPieceAt(i,j).validMove(i, j, kingY, kingX, this)) {
                     return true;
                 }
@@ -260,6 +264,36 @@ public class Board {
         }
         return false;
     }
+
+    /**
+     * TODO :
+     *
+     * @return
+     */
+    public boolean inCheckMate(int activePlayerColor) {
+        // Create a second board object called copy
+        Board copy = new Board(this);
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                for (int k = 0; k < board.length; k++) {
+                    for (int l = 0; l < board.length; l++) {
+                        // Check all possible moves for active player by looping through all pieces and all board positiosn
+                        try {
+                            copy.movePieceAt(activePlayerColor, i, j , k , l);
+                        } catch (Exception e) {
+                            // :)
+                        }
+                        if (!inCheck(activePlayerColor)) {
+                            return false; // If any move results in non Check return true
+                        }
+                        copy = this;
+                    }
+                }
+            }
+        }
+        return true; // else you are donezo
+    }
+
 
     public String displayBoard() {
         StringBuilder sb = new StringBuilder();
