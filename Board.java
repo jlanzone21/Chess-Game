@@ -273,20 +273,17 @@ public class Board {
      */
     public boolean inCheckMate(int activePlayerColor) {
         // Create a second board object called copy
-        final Board original = new Board(this);
         Board copy = new Board(this);
-        // TODO : Change back to 0 0
-        for (int i = 3; i < board.length; i++) {
-            for (int j = 1; j < board.length; j++) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
                 // If there is a piece of the right color then...
                 if (copy.getPieceAt(i,j) != null && copy.board[i][j].getColor() == activePlayerColor)
                     for (int k = 0; k < board.length; k++) {
                         for (int l = 0; l < board.length; l++) {
                             // Check all possible moves for active player by looping through all pieces and all board positiosn
-                            if (copy.getPieceAt(i,j).validMove(i,j,k,l, copy)) {
+                            if (copy.getPieceAt(i,j) != null && copy.getPieceAt(i,j).validMove(i,j,k,l, copy)) {
                                 try {
                                     copy.movePieceAt(activePlayerColor, i, j, k, l);
-                                    System.out.println(copy.displayBoard());
                                 } catch (Exception e) {
                                     // :)
                                 }
@@ -294,8 +291,7 @@ public class Board {
                                     return false; // If any move results in non Check return true
                                 }
 
-                                copy = new Board(original);
-                                System.out.println(copy.displayBoard());
+                                copy = new Board(this);
                             }
                         }
                 }

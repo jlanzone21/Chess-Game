@@ -43,9 +43,9 @@ public class Game {
                     if (gameBoard.inCheckMate(turn)) {
                         System.out.print("mate\n");
                         if (turn == 1)
-                            System.out.println("White wins!");
-                        else
                             System.out.println("Black wins!");
+                        else
+                            System.out.println("White wins!");
                         break gameLoop;
                     }
                 }
