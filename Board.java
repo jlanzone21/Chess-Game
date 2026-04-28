@@ -257,8 +257,8 @@ public class Board {
         int kingX = whereTheHuzzAt(activePlayerColor).charAt(1)-'0';
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j ++) {
-                if (board[i][j] != null && getPieceAt(i,j).getColor() == oppositePlayerColor &&
-                        getPieceAt(i,j).validMove(i, j, kingY, kingX, this)) {
+                if (this.board[i][j] != null && this.getPieceAt(i,j).getColor() == oppositePlayerColor &&
+                        this.getPieceAt(i,j).validMove(i, j, kingY, kingX, this)) {
                     return true;
                 }
             }
@@ -273,10 +273,12 @@ public class Board {
      */
     public boolean inCheckMate(int activePlayerColor) {
         // Create a second board object called copy
+        final Board original = new Board(this);
         Board copy = new Board(this);
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board.length; j++) {
-                // Tests if its even the right color
+        // TODO : Change back to 0 0
+        for (int i = 3; i < board.length; i++) {
+            for (int j = 1; j < board.length; j++) {
+                // If there is a piece of the right color then...
                 if (copy.getPieceAt(i,j) != null && copy.board[i][j].getColor() == activePlayerColor)
                     for (int k = 0; k < board.length; k++) {
                         for (int l = 0; l < board.length; l++) {
@@ -284,13 +286,16 @@ public class Board {
                             if (copy.getPieceAt(i,j).validMove(i,j,k,l, copy)) {
                                 try {
                                     copy.movePieceAt(activePlayerColor, i, j, k, l);
+                                    System.out.println(copy.displayBoard());
                                 } catch (Exception e) {
                                     // :)
                                 }
-                                if (!inCheck(activePlayerColor)) {
+                                if (!copy.inCheck(activePlayerColor)) {
                                     return false; // If any move results in non Check return true
                                 }
-                                copy = this;
+
+                                copy = new Board(original);
+                                System.out.println(copy.displayBoard());
                             }
                         }
                 }
