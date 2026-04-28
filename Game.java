@@ -38,6 +38,17 @@ public class Game {
         while (true) {
             System.out.print(gameBoard.displayBoard());
             while (true) {
+                if (gameBoard.inCheck(turn)) {
+                    System.out.print("Check");
+                    if (gameBoard.inCheckMate(turn)) {
+                        System.out.print("mate\n");
+                        if (turn == 1)
+                            System.out.println("White wins!");
+                        else
+                            System.out.println("Black wins!");
+                        break gameLoop;
+                    }
+                }
                 // Loop to make sure that a person makes a valid move
                 if (turn == 1)
                     System.out.print("\nYour move White(ex. Nc3): ");

@@ -70,9 +70,15 @@ public class Test {
 
     }
 
+    public static void testCheckmate() {
+        Board testBoard = new Board();
+        // TODO :
+    }
+
     public static void main(String[] args) throws Exception {
         //testCase1();
-        testBishop();
+        //testBishop();
+        testCheckmate();
 
     }
 }

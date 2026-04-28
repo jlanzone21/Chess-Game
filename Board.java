@@ -234,7 +234,7 @@ public class Board {
     }
 
     /**
-     * If one team is in check and has no validMove, then they are in Checkmate and the other team wins
+     *
      * @return 1 for WHITE and 2 for BLACK wins, 0 if no win, and -1 if stalemate
      */
     public int hasWon(int activePlayerColor) {
@@ -267,28 +267,32 @@ public class Board {
     }
 
     /**
-     * TODO :
+     * If one team is in check and has no validMove, then they are in Checkmate and the other team wins
      *
-     * @return
+     * @return boolean true if inCheckmate and game is over
      */
     public boolean inCheckMate(int activePlayerColor) {
         // Create a second board object called copy
         Board copy = new Board(this);
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
-                for (int k = 0; k < board.length; k++) {
-                    for (int l = 0; l < board.length; l++) {
-                        // Check all possible moves for active player by looping through all pieces and all board positiosn
-                        try {
-                            copy.movePieceAt(activePlayerColor, i, j , k , l);
-                        } catch (Exception e) {
-                            // :)
+                // Tests if its even the right color
+                if (copy.getPieceAt(i,j) != null && copy.board[i][j].getColor() == activePlayerColor)
+                    for (int k = 0; k < board.length; k++) {
+                        for (int l = 0; l < board.length; l++) {
+                            // Check all possible moves for active player by looping through all pieces and all board positiosn
+                            if (copy.getPieceAt(i,j).validMove(i,j,k,l, copy)) {
+                                try {
+                                    copy.movePieceAt(activePlayerColor, i, j, k, l);
+                                } catch (Exception e) {
+                                    // :)
+                                }
+                                if (!inCheck(activePlayerColor)) {
+                                    return false; // If any move results in non Check return true
+                                }
+                                copy = this;
+                            }
                         }
-                        if (!inCheck(activePlayerColor)) {
-                            return false; // If any move results in non Check return true
-                        }
-                        copy = this;
-                    }
                 }
             }
         }
