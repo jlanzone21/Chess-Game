@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Board {
@@ -229,7 +230,7 @@ public class Board {
                 }
             }
         }
-        return null;
+        throw new NoSuchElementException("The board contains no kings of color " + color);
     }
 
     /**
