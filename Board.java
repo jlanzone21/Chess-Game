@@ -104,37 +104,44 @@ public class Board {
      */
     public void kingSideCastle(int turn) throws Exception {
         if(turn == 1){
-            if(getPieceAt(0,4).getLetter() == 'K' && getPieceAt(0,7).getLetter() == 'R'){
-                King k = (King) getPieceAt(0,4);
-                Rook r = (Rook) getPieceAt(0,7);
-                if(!k.getHasMoved() && this.spaceColor(0,5) == 0 && this.spaceColor(0,6) == 0 && !r.getHasMoved()) {
-                    board[0][6] = k;
-                    board[0][5] = r;
-                    board[0][4] = null;
-                    board[0][7] = null;
-                    k.hasMoved();
-                    r.hasMoved();
+            try {
+                if (getPieceAt(0, 4).getLetter() == 'K' && getPieceAt(0, 7).getLetter() == 'R') {
+                    King k = (King) getPieceAt(0, 4);
+                    Rook r = (Rook) getPieceAt(0, 7);
+                    if (!k.getHasMoved() && this.spaceColor(0, 5) == 0 && this.spaceColor(0, 6) == 0 && !r.getHasMoved()) {
+                        board[0][6] = k;
+                        board[0][5] = r;
+                        board[0][4] = null;
+                        board[0][7] = null;
+                        k.hasMoved();
+                        r.hasMoved();
+                        return;
+                    }
                 }
-                else { throw new Exception("Castle Failed");}
+            } catch (Exception e) {
+                throw new Exception("Castle Failed");
             }
-            else { throw new Exception("Castle Failed");}
         }
         else if (turn == -1) {
-            if(board[7][4].getLetter() == 'k' && board[7][7].getLetter() == 'r'){
-                King k = (King) getPieceAt(7,4);
-                Rook r = (Rook) getPieceAt(7,7);
-                if(!k.getHasMoved() && this.spaceColor(7,5) == 0 && this.spaceColor(7,6) == 0 && !r.getHasMoved()){
-                    board[7][5] = board[7][7];
-                    board[7][6] = board[7][4];
-                    board[7][7] = null;
-                    board[7][4] = null;
-                    k.hasMoved();
-                    r.hasMoved();
+            try {
+                if (board[7][4].getLetter() == 'k' && board[7][7].getLetter() == 'r') {
+                    King k = (King) getPieceAt(7, 4);
+                    Rook r = (Rook) getPieceAt(7, 7);
+                    if (!k.getHasMoved() && this.spaceColor(7, 5) == 0 && this.spaceColor(7, 6) == 0 && !r.getHasMoved()) {
+                        board[7][5] = board[7][7];
+                        board[7][6] = board[7][4];
+                        board[7][7] = null;
+                        board[7][4] = null;
+                        k.hasMoved();
+                        r.hasMoved();
+                        return;
+                    }
                 }
-                else { throw new Exception("Castle Failed");}
+            } catch (Exception e) {
+                throw new Exception("Castle Failed");
             }
-            else { throw new Exception("Castle Failed");}
         }
+        throw new Exception("Castle Failed: THIS ERROR SHOULD NEVER PRINT");
     }
 
 
@@ -182,7 +189,7 @@ public class Board {
                 throw new Exception("Castle Failed");
             }
         }
-        throw new Exception("Castle Failed");
+        throw new Exception("Castle Failed: THIS SHOULD NEVER PRINT");
 
     }
 

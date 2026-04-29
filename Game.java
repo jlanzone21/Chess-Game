@@ -5,25 +5,9 @@ import java.util.Stack;
  * This class will hold all the game logic
  */
 public class Game {
-    private boolean playerTurn = true;
-    Board board = new Board();
 
-    /**
-     * This might go away because its member variables might just go into main's scope
-     */
-    public Game() {}
-
-    /**
-     * Scans through input and calls board.movePiece() on the right piece
-     * @param input String containing move information
-     */
-    public void takeTurn(String input) {
-
-    }
     /**
      * This main will run the entire game and loop through turns into a player has won
-     * or a stalemate has been reached.
-     * @param args
      */
     public static void main(String[] args) {
         //new GUI();
@@ -75,7 +59,13 @@ public class Game {
                 // castle logic
                 if (word.equalsIgnoreCase("O-O")) {
                     try {
+                        undoStack.push(new Board(gameBoard));
                         gameBoard.kingSideCastle(turn);
+                        if (gameBoard.inCheck(turn)) {
+                            System.out.println("Invalid Move: You are in check");
+                            gameBoard = new Board(undoStack.pop());
+                            continue;
+                        }
                         break;
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
@@ -85,7 +75,13 @@ public class Game {
 
                 if (word.equalsIgnoreCase("O-O-O")) {
                     try {
+                        undoStack.push(new Board(gameBoard));
                         gameBoard.queenSideCastle(turn);
+                        if (gameBoard.inCheck(turn)) {
+                            System.out.println("Invalid Move: You are in check");
+                            gameBoard = new Board(undoStack.pop());
+                            continue;
+                        }
                         break;
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
