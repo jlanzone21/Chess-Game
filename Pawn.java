@@ -39,7 +39,6 @@ public class Pawn extends Piece {
             return false;
         }
         //White
-        // TODO : Make this logic consistent with a zero array (start at 0 not 1. We will change the input to computer code in Game)
         if(getColor()==1) {
             //Double jump pawn logic
             if(y == 1 && nX == x && nY == 3 && currentBoard.spaceColor(3,nX) == 0 && currentBoard.spaceColor(2,nX) == 0){

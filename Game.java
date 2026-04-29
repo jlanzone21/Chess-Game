@@ -37,10 +37,10 @@ public class Game {
         gameLoop:
         while (true) {
             System.out.print(gameBoard.displayBoard());
-            while (true) {
-                if (gameBoard.inCheck(turn)) {
+            while (true) { // Turn Loop
+                if (gameBoard.inCheck(turn)) { // If the king is in check
                     System.out.print("Check");
-                    if (gameBoard.inCheckMate(turn)) {
+                    if (gameBoard.inCheckMate(turn)) { // If the king is in checkmate game is over
                         System.out.print("mate\n");
                         if (turn == 1)
                             System.out.println("Black wins!");
@@ -48,6 +48,8 @@ public class Game {
                             System.out.println("White wins!");
                         break gameLoop;
                     }
+                    // There is a possible move to get out of check still
+
                 }
                 // Loop to make sure that a person makes a valid move
                 if (turn == 1)
@@ -70,23 +72,23 @@ public class Game {
                     }
                 }
 
-                    // castle logic
-                    if (word.equals("O-O")) {
-                        try {
-                            gameBoard.kingSideCastle(turn);
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                            continue;
-                        }
+                // castle logic
+                if (word.equalsIgnoreCase("O-O")) {
+                    try {
+                        gameBoard.kingSideCastle(turn);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        continue;
                     }
+                }
 
-                    if (word.equals("O-O-O")) {
-                        try {
-                            gameBoard.queenSideCastle(turn);
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                            continue;
-                        }
+                if (word.equalsIgnoreCase("O-O-O")) {
+                    try {
+                        gameBoard.queenSideCastle(turn);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        continue;
+                    }
                     }
 
                 // Parses input from scanner into correct movePiece() format
@@ -108,11 +110,15 @@ public class Game {
                 try {
                     undoStack.push(new Board(gameBoard));
                     gameBoard.movePiece(letter, turn, col, row);
-                    //System.out.print(gameBoard.displayBoard());
-                    break;
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
+                if (gameBoard.inCheck(turn)) {
+                    System.out.println("Invalid Move: You are in check");
+                    gameBoard = undoStack.pop();
+                    continue;
+                }
+                break;
 
             }
             //Switches turn
