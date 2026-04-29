@@ -16,8 +16,8 @@ public class Board {
         board[0][5] = new Bishop(1);
         board[0][6] = new Knight(1);
         board[0][7] = new Rook(1);
-//        for (int i = 0; i < board.length; i++)
-//            board[1][i] = new Pawn(1);
+        for (int i = 0; i < board.length; i++)
+            board[1][i] = new Pawn(1);
         board[7][0] = new Rook(-1);
         board[7][1] = new Knight(-1);
         board[7][2] = new Bishop(-1);
@@ -26,8 +26,8 @@ public class Board {
         board[7][5] = new Bishop(-1);
         board[7][6] = new Knight(-1);
         board[7][7] = new Rook(-1);
-//        for (int i = 0; i < board.length; i++)
-//            board[6][i] = new Pawn(-1);
+        for (int i = 0; i < board.length; i++)
+            board[6][i] = new Pawn(-1);
     }
 
     public Board(Board other) {

@@ -10,12 +10,10 @@ public class Game {
      * This main will run the entire game and loop through turns into a player has won
      */
     public static void main(String[] args) {
-        //new GUI();
         Scanner input = new Scanner(System.in);
         Stack<Board> undoStack = new Stack<>();
         int turn = 1;
         Board gameBoard = new Board();
-        //undoStack.push(gameBoard);
 
 
         gameLoop:
