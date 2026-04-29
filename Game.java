@@ -64,7 +64,7 @@ public class Game {
                 // Works the logic for the undo button
                 else if (word.toLowerCase().equals("undo")) {
                     if (!undoStack.empty()) {
-                        gameBoard = undoStack.pop();
+                        gameBoard = new Board(undoStack.pop());
                         break;
                     } else {
                         System.out.print("There are no moves to undo");
@@ -76,6 +76,7 @@ public class Game {
                 if (word.equalsIgnoreCase("O-O")) {
                     try {
                         gameBoard.kingSideCastle(turn);
+                        break;
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                         continue;
@@ -85,6 +86,7 @@ public class Game {
                 if (word.equalsIgnoreCase("O-O-O")) {
                     try {
                         gameBoard.queenSideCastle(turn);
+                        break;
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                         continue;
@@ -110,16 +112,15 @@ public class Game {
                 try {
                     undoStack.push(new Board(gameBoard));
                     gameBoard.movePiece(letter, turn, col, row);
+                    if (gameBoard.inCheck(turn)) {
+                        System.out.println("Invalid Move: You are in check");
+                        gameBoard = new Board(undoStack.pop());
+                        continue;
+                    }
+                    break;
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-                if (gameBoard.inCheck(turn)) {
-                    System.out.println("Invalid Move: You are in check");
-                    gameBoard = undoStack.pop();
-                    continue;
-                }
-                break;
-
             }
             //Switches turn
             turn = -1*turn;
