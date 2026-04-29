@@ -38,11 +38,12 @@ public class Bishop extends Piece {
                 while (true) {
                     if (nY > ystart)
                         ystart++;
-                    else
+                    else if (nY < ystart)
                         ystart--;
+
                     if (nX > xstart)
                         xstart++;
-                    else
+                    else if (nX < xstart)
                         xstart--;
                     // If it is NOT the desired location check if its empty
                     if (!(ystart == nY && xstart == nX)) {
